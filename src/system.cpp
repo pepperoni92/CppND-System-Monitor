@@ -14,6 +14,10 @@ using std::size_t;
 using std::string;
 using std::vector;
 
+void System::Update() {
+  memoryUtilized_ = LinuxParser::MemoryUtilization();  
+}
+
 // TODO: Return the system's CPU
 Processor& System::Cpu() { return cpu_; }
 
@@ -24,7 +28,7 @@ vector<Process>& System::Processes() { return processes_; }
 std::string System::Kernel() { return string(); }
 
 // Return the system's memory utilization
-float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
+float System::MemoryUtilization() { return memoryUtilized_; }
 
 // Return the operating system name
 std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
