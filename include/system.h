@@ -24,6 +24,11 @@ class System {
   Processor cpu_ = {};
   std::vector<Process> processes_ = {};
   float memoryUtilized_ {0.0};
+  std::string kernel_;
+  std::string os_;
+  long uptime_;
+  int totalProcesses_;
+  int runningProcesses_;
 };
 
 #endif
