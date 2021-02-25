@@ -15,6 +15,7 @@ using std::string;
 using std::vector;
 
 void System::Update() {
+  cpu_.UpdateUtilization();
   memoryUtilized_ = LinuxParser::MemoryUtilization();  
   kernel_ = LinuxParser::Kernel();
   os_ = LinuxParser::OperatingSystem();
