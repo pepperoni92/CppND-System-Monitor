@@ -4,6 +4,7 @@
 #include <fstream>
 #include <regex>
 #include <string>
+#include "process.h"
 
 namespace LinuxParser {
 // Paths
@@ -17,6 +18,14 @@ const std::string kMeminfoFilename{"/meminfo"};
 const std::string kVersionFilename{"/version"};
 const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
+  
+// Stat Positions
+const int kUpTimePosition {22};
+const int kCpuUtime {14};
+const int kCpuStime {15};
+const int kCpuCutime {16};
+const int kCpuCstime {17};
+const int kCpuStarttime {22};
 
 // System
 float MemoryUtilization();
@@ -26,6 +35,11 @@ int TotalProcesses();
 int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
+std::vector<std::string> CpuUtilization();
+
+// Helpers
+int GetIntFromFile(std::string path, std::string key);
+std::string GetProcessStat(std::string statname, int pid);
 
 // CPU
 enum CPUStates {
@@ -40,13 +54,10 @@ enum CPUStates {
   kGuest_,
   kGuestNice_
 };
-std::vector<std::string> CpuUtilization();
-long Jiffies();
-long ActiveJiffies();
-long ActiveJiffies(int pid);
-long IdleJiffies();
+  
 
 // Processes
+float CpuUtilization(int pid);
 std::string Command(int pid);
 std::string Ram(int pid);
 std::string Uid(int pid);
