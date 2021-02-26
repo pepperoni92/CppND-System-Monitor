@@ -50,13 +50,15 @@ int System::TotalProcesses() const { return totalProcesses_; }
 long int System::UpTime() const { return uptime_; }
 
 void System::GetProcesses() {
-  vector<int> pids = LinuxParser::Pids();
-  
   processes_.clear();
+
+  vector<int> pids = LinuxParser::Pids();
   
   for (int pid : pids) {
     Process proc(pid);
     proc.Update();
     processes_.push_back(proc);
   }
+
+  std::sort(processes_.begin(), processes_.end());
 }

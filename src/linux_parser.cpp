@@ -133,8 +133,6 @@ vector<string> LinuxParser::CpuUtilization() {
 }
 
 int LinuxParser::GetIntFromFile(string path, string key) {
-  int i = 0;
-
   string line;
   string k;
   string value;
@@ -145,13 +143,13 @@ int LinuxParser::GetIntFromFile(string path, string key) {
       std::istringstream linestream(line);
       while (linestream >> k >> value) {
         if (k == key) {
-          i = stoi(value);
+          return stoi(value);
         }
       }
     }
   }
   
-  return i;
+  return 0;
 }
 
 int LinuxParser::TotalProcesses() {
