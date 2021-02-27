@@ -233,7 +233,8 @@ string LinuxParser::Command(int pid) {
 
 // Read and return the memory used by a process
 string LinuxParser::Ram(int pid) {
-  return GetProcessStat("VmSize", pid);
+  long ram = stol(GetProcessStat("VmSize", pid));
+  return to_string(ram/1000);
 }
 
 // Read and return the user ID associated with a process
