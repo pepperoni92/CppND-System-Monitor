@@ -215,7 +215,7 @@ float LinuxParser::CpuUtilization(int pid) {
   
   float total_time = utime + stime + cutime + cstime;
   float seconds = UpTime() - (starttime / sysconf(_SC_CLK_TCK));
-  return 100 * ((total_time / sysconf(_SC_CLK_TCK)) / seconds) ;
+  return (total_time / sysconf(_SC_CLK_TCK)) / seconds;
 }
 
 // Read and return the command associated with a process

@@ -38,4 +38,4 @@ string Process::User() const { return user_; }
 long int Process::UpTime() const { return uptime_; }
 
 // compare this Processes CPU Utilization against anothers
-bool Process::operator<(Process const& a) const { return cpu_ < a.CpuUtilization(); }
+bool Process::operator<(Process const& a) const { return cpu_ > a.CpuUtilization(); }
