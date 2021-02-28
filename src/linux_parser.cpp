@@ -233,7 +233,13 @@ string LinuxParser::Command(int pid) {
 
 // Read and return the memory used by a process
 string LinuxParser::Ram(int pid) {
-  long ram = stol(GetProcessStat("VmSize", pid));
+  long ram = 0;
+  string ramString = GetProcessStat("VmSize", pid);
+  
+  if (ramString != "") {
+	  ram = stol(ramString);
+  }
+  
   return to_string(ram/1000);
 }
 
